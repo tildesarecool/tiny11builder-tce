@@ -1,26 +1,38 @@
-# tiny11builder-TCE
+# Tiny11Builder - TCE
 
 Scripts to build a trimmed-down Windows 11 image - now in...Python?
 <p>
+
 As implied by above, this is a fork of [Tiny11 by ntdevlabs](https://github.com/ntdevlabs/tiny11builder). But I don't think I'll be doing any pull requests. 
+
+</p>
+
+<p>
+
+Just so there's no confusion here, I don't think this will ever replace the PS version of this script. And there's no reason to write this in Python given the advantages of using PS for the purpose. This is more of an exercise than anything else.
+
+</p>
+
 <p>
 Since I've been working on Python recently I wanted to see if I could recreate the functionality using Python. 
+</p>
 <p>
-I haven't dissected the script yet but I should be able to support Windows 10 and 11 and any architecture (though since I don't care about ARM that will be at the bottom of the priority list).
+I haven't dissected the PS script yet but I should be able to support Windows 10 and 11 and any architecture (though since I don't care about ARM that will be at the bottom of the priority list).
+</p>
 <p>
-One possible disadvantage of using htis version is needing an install of Python (I wasn't planning to convert to exe).
+One possible disadvantage of using this version is needing an install of Python (I wasn't planning to convert to exe).
+</p>
 <p>
-Since it is written in PowerShell, you need to set the execution policy to  `Unrestricted`, so that you could run the script.
-If you haven't done this before, make sure to run `Set-ExecutionPolicy unrestricted` as administrator in PowerShell before running the script, otherwise it would just crash.
 
+I'm not sure yet if I'll utilize the same approach to creating a bootable ISO using oscdimg but I likely will not be able to get around using DISM. I will use the included unattend file at as a base for my own - I happen to have my own unattend files and want to skip a lot more things (like UELA agreement checkbox, keyboard language/layout and OS language).
+</p>
+<p>
+Like the original, this is open-source, **so feel free to add or remove anything you want!** Feedback is also much appreciated.
+</p>
+<p>
 
-This is a script created to automate the build of a streamlined Windows 11 image, similar to tiny11.
-My main goal is to use only Microsoft utilities like DISM, and no utilities from external sources. The only executable included is **oscdimg.exe**, which is provided in the Windows ADK and it is used to create bootable ISO images. 
-Also included is an unattended answer file, which is used to bypass the Microsoft Account on OOBE and to deploy the image with the `/compact` flag.
-It's open-source, **so feel free to add or remove anything you want!** Feedback is also much appreciated.
-
-Also, for the very first time, **introducing tiny11 core builder**! A more powerful script, designed for a quick and dirty development testbed. Just the bare minimun, none of the fluff. 
-This script generates a significantly reduced Windows 11 image. However, it's not suitable for regular use due to its lack of serviceability - you can't add languages, updates, or features post-creation. tiny11 Core is not a full Windows 11 substitute but a rapid testing or development tool, potentially useful for VM environments.
+It's too soon to say if I'll try to also reproduce  **tiny11 core builder**.  I will have to save that for last and deicied if it's worthwhile.
+</p>
 
 Instructions:
 
