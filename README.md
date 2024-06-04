@@ -1,14 +1,15 @@
-# tiny11builder
+# tiny11builder-TCE
 
-Scripts to build a trimmed-down Windows 11 image - now in **PowerShell**!
-<br>
-Tiny11 builder, now completely overhauled.
-</br>
-After more than a year (for which I am so sorry) of no updates, tiny11 builder is now a much more complete and flexible solution - one script fits all. Also, it is a steppingstone for an even more fleshed-out solution.
-<br>
-You can now use it on ANY Windows 11 release (not just a specific build), as well as ANY language or architecture.
-This is made possible thanks to the much-improved scripting capabilities of PowerShell, compared to the older Batch release.
-</br>
+Scripts to build a trimmed-down Windows 11 image - now in...Python?
+<p>
+As implied by above, this is a fork of [Tiny11 by ntdevlabs](https://github.com/ntdevlabs/tiny11builder). But I don't think I'll be doing any pull requests. 
+<p>
+Since I've been working on Python recently I wanted to see if I could recreate the functionality using Python. 
+<p>
+I haven't dissected the script yet but I should be able to support Windows 10 and 11 and any architecture (though since I don't care about ARM that will be at the bottom of the priority list).
+<p>
+One possible disadvantage of using htis version is needing an install of Python (I wasn't planning to convert to exe).
+<p>
 Since it is written in PowerShell, you need to set the execution policy to  `Unrestricted`, so that you could run the script.
 If you haven't done this before, make sure to run `Set-ExecutionPolicy unrestricted` as administrator in PowerShell before running the script, otherwise it would just crash.
 
