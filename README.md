@@ -80,5 +80,8 @@ TBD
 Features to be implemented:
 
 - option to import a custom hosts file?
-- maybe a GUI???
+- maybe a GUI? A TUI?
+- Autounattend.xml selection/generation?
+- Save settings as profile and select that for later?
+- Error handling?
 
