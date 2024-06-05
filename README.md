@@ -11,6 +11,8 @@ As implied by above, this is a fork of [Tiny11 by ntdevlabs](https://github.com/
 
 Just so there's no confusion here, I don't think this will ever replace the PS version of this script. And there's no reason to write this in Python given the advantages of using PS for the purpose. This is more of an exercise than anything else.
 
+Also, One of the main motivations for wanting to re-write this (besides Python practice) is the amount time it takes to generate the new ISO.
+
 </p>
 
 <p>
@@ -38,12 +40,12 @@ Instructions:
 
 1. Download Windows 11 from the Microsoft website (<https://www.microsoft.com/software-download/windows11>)
 2. Mount the downloaded ISO image using Windows Explorer.
-3. Select the drive letter where the image is mounted (only the letter, no colon (:))
-4. Select the SKU that you want the image to be based.
+3. (This step will be replaced/TBD)
+4. Select the SKU that you want the image to be based: I'll replace the UI/presentation of this step
 5. Sit back and relax :)
-6. When the image is completed, you will see it in the folder where the script was extracted, with the name tiny11.iso
+6. Re-building an ISO takes too long. I really hope I can improve this. 
 
-What is removed:
+What is removed (TBD):
 
 - Clipchamp
 - News
@@ -69,36 +71,14 @@ What is removed:
 - Edge
 - OneDrive
 
-For tiny11 core:
-- all of the above +
-- Windows Component Store (WinSxS)
-- Windows Defender (only disabled, can be enabled back if needed)
-- Windows Update (Windows Update wouldn't work anyway without WinSxS, so enabling it would only put the system in a state where it would try to update but fail spectacularily)
-- WinRE
-<br>
-Keep in mind that **you cannot add back features in tiny11 core**!
-</br>
-<br>
-You will be asked during image creation if you want to enable .net 3.5 support!
-</br>
+For tiny11 core (TBD):
+
 Known issues:
 
-1. Although Edge is removed, there are some remnants in the Settings. But the app in itself is deleted. You can install any browser using WinGet (after you update the app using Microsoft Store). If you want Edge, Copilot and Web Search back, simply install Edge using Winget: `winget install edge`.
-<br>
-Note: You might have to update Winget before being able to install any apps, using Microsoft Store.
-<br>
-</br>
-2. Outlook and Dev Home might reappear after some time.
-<br>
-</br>
-3. If you are using this script on arm64, you might see a glimpse of an error while running the script. This is caused by the fact that the arm64 image doesn't have OneDriveSetup.exe included in the System32 folder.
+TBD
 
 Features to be implemented:
-~~- disabling telemetry~~ Implemented in the 04-29-24 release!
-- more ad suppression
-- improved language and arch detection
-- more flexibility in what to keep and what to delete
+
+- option to import a custom hosts file?
 - maybe a GUI???
 
-And that's pretty much it for now!
-Thanks for trying it and let me know how you like it!
