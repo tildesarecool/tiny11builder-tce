@@ -9,7 +9,24 @@
 # 
 import os
 
+def is_dism_available():
+    """
+    Return bool for whether DISM is available on system.
+    """
+    # Use os.system to run 'dism /?' and check if it returns 0
+    return os.system('dism /?') == 0
+
+def buildUpDismCLI():
+    if is_dism_available():
+        
+        pass
+
+
 def get_processor_architecture():
+    """ 
+    I'm actually not sure what this arch identification is going to be used for. 
+    But it does return AMD64 or false for now. 
+    """
     # processor_architecture = os.getenv('PROCESSOR_ARCHITECTURE')
     if os.getenv('PROCESSOR_ARCHITECTURE'):
         #print("processor arch found")
@@ -19,6 +36,18 @@ def get_processor_architecture():
         return False
 
 def set_temp_dir():
+    """ 
+    This function is supposed to:
+    a) use a default working directory path if none is specified (and create folder as necessary)
+    b) let user specify a path to be used as a working directory
+    c) return false where necessary
+    d) do appropriate exist checks on paths where required
+    It could still use some work but it's close enough for now.
+     """
+# Ideas for later:
+# Report free space of the SystemRoot (C:) drive and compare to estimated required. 
+# Also other ideas to be filled in here
+#      
     defpath = os.getenv('USERPROFILE') + "\documents\\tiny11"
     if os.path.exists(defpath):        
         print(f"defpath is {defpath}")
@@ -37,19 +66,29 @@ def set_temp_dir():
 
     elif setworkpath != "":
         if os.path.exists(setworkpath):
-            print(f"You entered '{setworkpath}', which does exist")
+            print(f"Working directory set to '{setworkpath}'")
             return setworkpath
         else:
             print(f"The path '{setworkpath}' could not be found. Things to check: no quotes are required, make sure path is a folder not a file, also try shift+right click to 'copy as path' a folder and paste")
             return False
 
-#        \nIf no path is entered then the a subdirectory called tiny 11 will be created in your 'documents' folder \
-#        \n ")
-#    pass
-
+def SetWindowsSourcePath():
+    print("Please specifiy a path for the root of a Windows 10 or 11 installations source. \
+\nThis can be a mounted ISO, a physical CD/DVD drive with an install disk, \
+\nor a directory  (extracted from an ISO for instance). The 'root' will have a 'sources' subfolder \
+\nSample Paths: \
+\nD: \
+\nc:\ISOs\Windows11-24h1 \
+\n(You can try a UNC but I don't think it would work and would be really slow anyway)")
+#\n or a directory  (extracted from an ISO for instance)")
 
 
 if __name__ == "__main__":
-    cpu_arch = get_processor_architecture()
-    set_temp_dir()
-    print(f"CPU arch is {cpu_arch}")
+#    cpu_arch = get_processor_architecture()
+    if set_temp_dir():
+        pass
+        #tempdir = set_temp_dir()
+    else:
+        set_temp_dir()
+    
+    SetWindowsSourcePath()

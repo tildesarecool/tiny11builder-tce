@@ -82,6 +82,7 @@ Features to be implemented:
 - option to import a custom hosts file?
 - maybe a GUI? A TUI?
 - Autounattend.xml selection/generation?
-- Save settings as profile and select that for later?
+- Save settings as profile and select that for later? Settings saved to JSON file?
 - Error handling?
+- I could offer to make Win 11 skip CPU etc checks. This might be too complicated. 
 
