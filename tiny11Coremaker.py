@@ -21,7 +21,6 @@ def buildUpDismCLI():
         
         pass
 
-
 def get_processor_architecture():
     """ 
     I'm actually not sure what this arch identification is going to be used for. 
@@ -80,7 +79,20 @@ def SetWindowsSourcePath():
 \nD: \
 \nc:\ISOs\Windows11-24h1 \
 \n(You can try a UNC but I don't think it would work and would be really slow anyway)")
-#\n or a directory  (extracted from an ISO for instance)")
+
+    winSourcePath = input("Enter path to Windows install drive (or directory): ")
+    winSourcePath = winSourcePath.strip()
+
+    if winSourcePath != "":
+        srcpath = True
+    else:
+        srcpath = False
+    
+    if srcpath and os.path.exists(winSourcePath):
+        print(f"Install directory source set to '{winSourcePath}'")
+        return winSourcePath
+    else:
+        pass
 
 
 if __name__ == "__main__":
