@@ -116,4 +116,99 @@ Since I defaulted this directory to %USERPROFILE%\documents\tiny11 that is where
 I've made a few edits but mostly researched a possible solution to one of the script's operations taking a really long time. Which I'll do in the most needlessly complicated way possible (you're welcome). It invovles MemoryFS, tmpfile and symbolic links. I'll probably do some benchmarks to prove the feasibility before really adding it in. Or add it in anyway because hilarious. 
 
 
+### 8 June 2024
+
+I spent an emberacing amount of time trying to figure out if I could use DISM to take in an ESD file and output a WIM file directly to a RAM disk. The answer is no, not that I can find. I mean maybe there's a way using more advanced memory manipulation, I don't know. But in short without a device driver to make a piece of RAM look like a block device for Windows to write to, there doesn't seem to be a way. 
+
+So the choices are either a) just write the converted WIM file to the local storage like some kind of normal person or b) use imDisk to create the RAM disk and write it. I was trying to avoid having to use a third party utility but if that's the only way than that's what I'll have to do. Since I don't know if I'm allowed to redistribute imDisk or if user's would even be open to utilizing it I haven't decided if I want to bother. I'll do some bench marks and see if it's worth bothering. Or just label it "experimental". I think imDisk functions can be access via PS. I have read into that more.
+
+As an aside, I ended up finding a lot of scripts on GitHub that do basically the same thing as Tiny11Builder. Like a script doing this is some kind of right of passage. 
+
+I did this research instead of what I really needed to do: create a simple algorithm for taking in the output a DISM command and presenting that informaiton as a menu. 
+
+The command is 
+
+```
+dism "/Get-WimInfo" "/wimfile:$DriveLetter\sources\install.esd"
+```
+
+This produces output in format
+
+```
+Index : 1
+Name : Windows 11 Home
+Description : Windows 11 Home
+Size : 18,638,210,474 bytes
+
+Index : 2
+Name : Windows 11 Home N
+Description : Windows 11 Home N
+Size : 17,934,598,356 bytes
+```
+
+Except with 7 or 8 indexes. 
+
+What I need is a function that takes in that output, splits each grouping of index/name/description/size into seperate lists (using '\n\n' as the iterator) and takes *each list* and: chops off size and descripotion, changes the word "Index" to something else like "Enter" and "Name" to "for version" or something like that. 
+
+So for instance 
+
+```
+Index : 1
+Name : Windows 11 Home
+Description : Windows 11 Home
+Size : 18,638,210,474 bytes
+```
+
+Is index 0 (including the line breaks). 
+
+I was able to remember pop() cuts off the last elements of a list. But I found a reference that reminded that slice is a thing. Something like this:
+
+```Python
+entryOne = [
+    "Index : 1",
+    "Name : Windows 11 Home",
+    "Description : Windows 11 Home",
+    "Size : 18,638,210,474 bytes"
+]
+
+# Slice the last two lines
+entryOne = entryOne[:-2]
+```
+This seems much better.
+
+Now all I need is a for-loop to do that to all the entries. 
+
+Alright, in a separate experimental script I ended up with this function. It's not "pretty"  but it takes in that list of indexes and returns of list-of-lists for the edited entries.
+
+The idea is I'll use a for loop to generate a menu for the user to select. Of course I still have to build out a menu that excepts input for each of these entries and responds. And other minor details. But I'm so glad I at least got this far.
+
+```Python
+def converIndexList(index_input) -> list:
+    
+    list_collect = []
+    
+    split_input = index_input.split("\n\n")
+#    split_input = split_input[0]
+    #print(f"value of split_input outside for loop is \n{split_input}" )
+    for indecies in range(len(split_input)):
+        indexer = split_input[indecies]
+        indexer = indexer.splitlines()
+        indexer = indexer[:-2]
+        
+        if len(indexer) == 2:
+            indexer[0] = indexer[0].replace("Index", "Enter")
+            indexer[1] = indexer[1].replace("Name", "For entry")
+#        index_count = index_count + 1
+
+        list_collect.append(indexer)
+        
+#        print(f"value of indexer inside for loop and pre-enjoinment is \n---{indexer}---" )
+        
+    print(f"value of list collector outside for loop is \n---{list_collect}---" )
+    print(f"index 0 of list collect is \n---{list_collect[0]}---" )
+    
+    return list_collect
+
+```
+
 </p>

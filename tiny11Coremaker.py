@@ -56,8 +56,8 @@ def set_temp_dir():
     print(f"Please enter path for a temp directory.\
     \nDefault: ({os.getenv('USERPROFILE')}\documents\\tiny11) \
     \nNote: Assume at least ~20GB of drive space will be required (for ISOs etc) ")
-    setworkpath = input("Enter a path (no quotes): ")
-    setworkpath = setworkpath.strip()
+    setworkpath = input("Enter a path (no quotes): ").strip() # does adding .strip at the end work? Dare I to dream?
+    #setworkpath = setworkpath.strip()
 
     if setworkpath == "":
         print(f"Working directory set to {defpath}")
