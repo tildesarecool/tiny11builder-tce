@@ -211,4 +211,27 @@ def converIndexList(index_input) -> list:
 
 ```
 
+### 9 June 2024
+
+As I progress through the PS script the full picture of it starts to get more and more clarified. And my opinion on the quality hasn't increased at all. 
+
+ I'm going to ignore several things for now, perhaps maybe coming back later:
+ - non-english/international languages for UI etc
+ - 32-bit and arm based sources
+
+The script goes through several things before it it really even gets to the meat of it:
+- it establishes a "scratch drive" - it copies the whole source to a tiny11 subfolder
+- converts any install.esd file to an install.WIM file/deletes the ESD 
+- removes read-only flag from wim file if found
+- asks user for which index file listed in the install.wim file to use
+- based on the entered index, mounts the install wim file to root of the scratch directory
+- Then removes a list of appx packages from the mounted WIM file
+
+I was wondering what took it so long to complete various tasks. I think I have my answer. Even with a decent CPU and an NVME drive these tasks are going to take a while. And there's still the minor detail of re-creating an ISO. Using that third party RAM disk utility is sounding more and more tempting. Since it takes ~45 minutes to complete this task right now.
+
+What I'd kind of like to do is query a list of available appx packages and present that to the user. And maybe add a yes/no to continue if not a choose each individual one. Somehow that seems better than the just-trust-me-bro approach to an arbirary list of appx packages to remove. Maybe it's just me. Or I think a default list of packages to be removed with a bail-out option to add/remove other packages manually somehow. 
+
+
+
+
 </p>

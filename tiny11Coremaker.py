@@ -24,7 +24,8 @@ def buildUpDismCLI():
 def get_processor_architecture():
     """ 
     I'm actually not sure what this arch identification is going to be used for. 
-    But it does return AMD64 or false for now. 
+    ---> In the original PS script this is used in a path later on involving looking for 
+    oscdimg.exe file in the ADK installation folder. Not a very high priority, in other words.
     """
     # processor_architecture = os.getenv('PROCESSOR_ARCHITECTURE')
     if os.getenv('PROCESSOR_ARCHITECTURE'):
