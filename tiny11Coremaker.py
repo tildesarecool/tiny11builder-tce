@@ -6,7 +6,6 @@
 #  Todo: check if script is running with local admin privileges.
 #  Probably implment this last or later at least
 # 
-# 
 import os
 
 def is_dism_available():

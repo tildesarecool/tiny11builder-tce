@@ -71,21 +71,36 @@ def converIndexList(index_input) -> list:
         indexer = indexer[:-2]
         
         if len(indexer) == 2:
-            indexer[0] = indexer[0].replace("Index", "Enter")
-            indexer[1] = indexer[1].replace("Name", "For entry")
+            indexer[0] = indexer[0].replace("Index :", "")
+            indexer[1] = indexer[1].replace("Name", "")
 #        index_count = index_count + 1
 
         list_collect.append(indexer)
         
 #        print(f"value of indexer inside for loop and pre-enjoinment is \n---{indexer}---" )
         
-    print(f"value of list collector outside for loop is \n---{list_collect}---" )
-    print(f"index 0 of list collect is \n---{list_collect[0]}---" )
+#    print(f"value of list collector outside for loop is \n---{list_collect}---" )
+#    print(f"index 0 of list collect is \n---{list_collect[0]}---" )
     
     return list_collect
 
+def processWimInfo():
 
-converIndexList(sample_input)
+    processInput = converIndexList(sample_input)
+
+    for osIndexes in processInput:
+    #    print(f"OS {osIndexes[1]} is selection: {osIndexes[0]}  \t")
+        print(f"{osIndexes[0]}\t for OS {osIndexes[1]}")
+
+    print("0 to quit")
+    response = input("Enter OS choice: ")
+    if response == 0:
+        print("No OS entered")
+        pass
+
+    return response
+
+processWimInfo()
 
 ######### only if i want to convert to string really bad
 #        indexer = "\n".join(indexer)
