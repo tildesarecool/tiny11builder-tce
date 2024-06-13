@@ -231,7 +231,9 @@ I was wondering what took it so long to complete various tasks. I think I have m
 
 What I'd kind of like to do is query a list of available appx packages and present that to the user. And maybe add a yes/no to continue if not a choose each individual one. Somehow that seems better than the just-trust-me-bro approach to an arbirary list of appx packages to remove. Maybe it's just me. Or I think a default list of packages to be removed with a bail-out option to add/remove other packages manually somehow. 
 
+### 12 June 2024
 
+Only the two functions for taking in and processing the WIM output got most done today. Well one takes in the WIM info as a big string and converts that string to a lists of lists. The second function loops through the that list and prints out a menu to select to the OS. I still haven't gone through and  done all the if/else statements to use those menu items to actually select which OS. That will likely come next. 
 
 
 </p>
